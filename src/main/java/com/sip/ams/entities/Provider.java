@@ -12,6 +12,11 @@ public class Provider {
 	@Id  // primary key
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	@Override
+	public String toString() {
+		return "Provider [id=" + id + ", name=" + name + ", address=" + address + ", email=" + email + "]";
+	}
+
 	@NotBlank(message = "Name is mandatory")
 	@Column(name = "name")
 	private String name;
