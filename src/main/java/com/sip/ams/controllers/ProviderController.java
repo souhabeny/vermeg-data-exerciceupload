@@ -65,15 +65,21 @@ public class ProviderController {
 	  providerRepository.findAll()); return "provider/listProviders";*/
 	
 	 return "redirect:../list"; }
-	 /* 
-	 * @GetMapping("edit/{id}") public String
-	 * showProviderFormToUpdate(@PathVariable("id") long id, Model model) { Provider
-	 * provider = providerRepository.findById(id) .orElseThrow(()->new
-	 * IllegalArgumentException("Invalid provider Id:" + id));
-	 * model.addAttribute("provider", provider); return "provider/updateProvider"; }
-	 * 
-	 * @PostMapping("update") public String updateProvider(@Valid Provider provider,
-	 * BindingResult result, Model model) { providerRepository.save(provider);
-	 * return"redirect:list"; } }
-	 */
+	
+	  @GetMapping("edit/{id}") 
+	  public String showProviderFormToUpdate(@PathVariable("id") long id, Model model) {
+		  Provider provider = providerRepository.findById(id) .orElseThrow(()->new
+	        IllegalArgumentException("Invalid provider Id:" + id));
+		  	model.addAttribute("provider", provider); 
+		  	return "provider/updateProvider"; 
+	  }
+	  
+	  @PostMapping("update") public String updateProvider(@Valid Provider provider,
+	  BindingResult result, Model model) 
+	  { 
+		  providerRepository.save(provider);
+		  return"redirect:list";
+	  } 
+	  
+	
 }
