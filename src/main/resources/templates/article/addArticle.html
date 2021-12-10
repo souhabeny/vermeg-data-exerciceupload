@@ -24,7 +24,7 @@ MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 			<div class="card-body">
 				<div class="col-md-10">
 					<form action="#" th:action="@{/article/add}" th:object="${article}"
-						method="post">
+						method="post" enctype="multipart/form-data">
 						<div class="row">
 							<div class="form-group col-md-8">
 								<label for="label" class="col-formlabel">Label</label> <input
@@ -41,6 +41,13 @@ MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 									class="textdanger"></span>
 
 							</div>
+							
+							<div class="form-group col-md-8">
+								<label for="image" class="col-formlabel">Picture</label>
+								<input class="form-control" type="file"
+								name="files" multiple id="image">
+							</div>
+							
 							<div class="form-group col-md-8">
 								<label for="provider" class="col-formlabel">Providers</label> 
 								<select name="providerId" class="form-control">

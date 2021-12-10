@@ -37,6 +37,7 @@ MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 										<th>Label</th>
 										<th>Price</th>
 										<th>Provider</th>
+										<th>Show</th>
 										<th>Edit</th>
 										<th>Delete</th>
 									</tr>
@@ -46,6 +47,9 @@ MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 										<td th:text="${article.label}"></td>
 										<td th:text="${article.price}"></td>
 										<td th:text="${article.provider.name}"></td>
+										<td><a th:href="@{/article/show/{id}(id=${article.id})}" class="btn btn-primary"><i
+											class="fas fa-user-show ml-2"></i>Show details</a></td>
+
 										<td><a th:href="@{/article/edit/{id}(id=${article.id})}"
 											class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
 										<td><a
