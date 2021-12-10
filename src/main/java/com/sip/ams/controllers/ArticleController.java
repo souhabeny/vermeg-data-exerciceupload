@@ -67,8 +67,9 @@ public class ArticleController {
 		Article artice = articleRepository.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("Invalid provider Id:" + id));
 		articleRepository.delete(artice);
-		model.addAttribute("articles", articleRepository.findAll());
-		return "article/listArticles";
+		return "redirect:../list";
+		//model.addAttribute("articles", articleRepository.findAll());
+		//return "/article/listArticles";
 	}
 
 	@GetMapping("edit/{id}")
@@ -81,19 +82,20 @@ public class ArticleController {
 		return "article/updateArticle";
 	}
 
-	@PostMapping("edit/{id}")
-	public String updateArticle(@PathVariable("id") long id, @Valid Article article, BindingResult result, Model model,
+	@PostMapping("edit")
+	public String updateArticle(@Valid Article article, BindingResult result, Model model,
 			@RequestParam(name = "providerId", required = false) Long p) {
 		if (result.hasErrors()) {
-			article.setId(id);
+			
 			return "article/updateArticle";
 		}
 		Provider provider = providerRepository.findById(p)
 				.orElseThrow(() -> new IllegalArgumentException("Invalid provider Id:" + p));
 		article.setProvider(provider);
 		articleRepository.save(article);
-		model.addAttribute("articles", articleRepository.findAll());
-		return "article/listArticles";
+		return "redirect:../list";
+		//model.addAttribute("articles", articleRepository.findAll());
+		//return "article/listArticles";
 	}
 
 }
