@@ -26,6 +26,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 
 import org.springframework.web.multipart.MultipartFile;
 @Controller
@@ -76,9 +77,13 @@ public class ArticleController {
 		/// part upload
 		StringBuilder fileName = new StringBuilder();
 		MultipartFile file = files[0];
-		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyy");
-        Date date = new Date();
-		String filedate=formatter.format(date).toString()+file.getOriginalFilename();
+		String datePattern = "yyyy-MM-ddHH-mm-ss";
+
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(datePattern);
+
+		String dateString = simpleDateFormat.format(new Date());
+
+		String filedate=dateString+file.getOriginalFilename();
 		Path fileNameAndPath = Paths.get(uploadDirectory,filedate);
 		fileName.append(filedate);
 		try {
@@ -143,9 +148,12 @@ public class ArticleController {
 		MultipartFile file = files[0];
 		
 		if(file.getOriginalFilename().isEmpty()==false)
-		{SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyy");
-        Date date = new Date();
-		String filedate=formatter.format(date).toString()+file.getOriginalFilename();
+		{ String datePattern = "yyyy-MM-ddHH-mm-ss";
+
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(datePattern);
+
+		String dateString = simpleDateFormat.format(new Date());
+		String filedate=dateString+file.getOriginalFilename();
 		Path fileNameAndPath = Paths.get(uploadDirectory,filedate);
 		fileName.append(filedate);
 		System.out.println("ddddd"+filedate);
